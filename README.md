@@ -2,27 +2,27 @@
 
 ## Introduction 
 
-Para este pryecto se nos pido la realizacion de una fusion entre dos distintos tipos de datos, los cuales fueron proporcionados por el docente, uno de estos estaba en formato csv, y el otro tenimos que insertarlo a una base de datos. Todo esto de forma automatizada mediante la herramienta AIRFLOW
+For this project we were asked to perform a fusion between two different types of data, which were provided by the teacher, one of these was in CSV format, and the other we had to insert into a database. All this in an automated way using the AIRFLOW tool
 
-A todo esto se le realizo un proceso de limpieza, tambien un proceso de analisis, incluido a esto, tambien se le realizo un proceso de automatizaciòn.
+A cleaning process was carried out on all of this, as well as an analysis process, including this, an automation process was also carried out.
 
-El estado de este proyecto es casi terminado, debido a que no se cumplio con el ultimmo requisito que fue subir a google drive nuestros datos finales mediante la API de google drive, pero de resto tenemos todo funcionando de manera automatizada hasta el punto de guardar los datos finales en una base de datos.
+The status of this project is almost finished, because the last requirement was not met, which was to upload our final data to Google Drive through the Google Drive API, but for the rest we have everything working in an automated way up to the point of saving the data. final data in a database.
 
-## Herramientas
+## Tolds
 
-Para este proyecto lo principal que se utilizo fue docker, debido a que corrimos airflow mediante contenedores ya que por el sistema operativo windows no podemos correrlo.
-Tambien utilizamos python claramente para poder realizar codigo.
-Varias librerias de python que mas adelante seran explicadas de como se utilizaron, para mas informacion buscar en la seccion instalaciòn.
-El gestor de bases de datos, Postgres.
-Y Power BI para poder visualizar estos datos
+For this project, the main thing used was docker, because we ran airflow through containers since we cannot run it due to the Windows operating system.
+We also clearly use Python to be able to code.
+Several python libraries that will later be explained how they were used, for more information look in the installation section.
+The database manager, Postgres.
+And Power BI to be able to visualize this data
 
 ## Content of the project
-Este proyecto/workshop se basa en 2 carpetas que contienen subcarpetas. Las dos pricnipales son airflow_first_dag, y la otra donde hacemos los notebooks llamada Notebooks.Tambien dentro de este proyecto encontraras los requirements que son todo lo que vas a necesitar para correr este proyecto, tambien debes crear un archivo Json que contentenga tus credenciales para acceder a la base de datos de postgres, porque en esto proyecto existia uno pero por el gitignore solicitado por el docente no es posible mostrarlo.
-Ahora, vamos a ver cual es el contenido de las dos carpetas principales comenzando por airflow_first_dag:
-Dentro de esta tenemos 3 subcarpetas, un docker compouse y un readme para correr el docker. Asi que procedamos a describir cada una de ellas para que entiendas como funcionan y que funcion cumplen.
-Dentro de la primera subcarpeta llamada dags, tendras el workshop_dag, que es la carpeta que contendra todo el contenido para el flujo de airflow, dentro de ella existe, etl.py y workshop_dag.py que son los archivos que nos ayudaran a y se complementaran entre si a la hora de correr el flujo, en etl tenemos todas las funciones que van a llevar acabo este flujo, y en el workshop_dag, es donde nosotros llamamos a esas funciones para ponerlas en un "entorno" airflow, donde en este se espesifica, los arguments, los das, el flujograma, etc..
-Ahora tenemos una carpeta llamada logs, que tendran que crear ustedes mismo tambien al igual que credentials.json, ya que este esta dentro del gitignore, y es donde van a estar los logs que va a sacar cada una de las tareas que correremos mas adelante.
-Por ultimo esta la carpeta comodin plugins, que yo en este caso la decidi utilizar como carpeta que me guardara los archivos que yo necesitara para correr el proyecto, aqui encontraras todos los csv que hacen posible que este proyecto tenga datos, y en esta misma carpeta debes crear 2 credentials, uno que sea de la siguinte manera:
+This project/workshop is based on 2 folders containing subfolders. The two main ones are airflow_first_dag, and the other one where we make the notebooks called Notebooks. Also within this project you will find the requirements that are everything you will need to run this project, you must also create a Json file that contains your credentials to access the postgres database, because in this project there was one but due to the gitignore requested by the teacher it is not possible to show it.
+Now, let's see what is the content of the two main folders starting with airflow_first_dag:
+Inside this we have 3 subfolders, a docker compouse and a readme to run docker. So let's proceed to describe each of them so that you understand how they work and what function they fulfill.
+Within the first subfolder called dags, you will have the workshop_dag, which is the folder that will contain all the content for the airflow flow, within it there is etl.py and workshop_dag.py, which are the files that will help us and will complement each other. If at the time of running the flow, in etl we have all the functions that are going to carry out this flow, and in the workshop_dag, is where we call those functions to put them in an airflow "environment", where it is specified, the arguments, the days, the flowchart, etc.
+Now we have a folder called logs, which you will also have to create yourself, as well as credentials.json, since this is inside gitignore, and it is where the logs that each of the tasks that we will run later will be. .
+Finally, there is the wildcard plugins folder, which in this case I decided to use as a folder that will save the files that I will need to run the project, here you will find all the csv that make it possible for this project to have data, and in this same folder you must create 2 credentials, one that is as follows:
 ```
 {
     "host" : "host.docker.internal",
@@ -32,34 +32,41 @@ Por ultimo esta la carpeta comodin plugins, que yo en este caso la decidi utiliz
 }
 
 ```
-Alli vas colocando tus credenciales y en el segundo ya colocas las mismas credenciales para conectarte a tu base de datos local.
-Y listo eso es todo lo que tienes que saber sobre como esta compuesto este proyecto.
+There you enter your credentials and in the second you enter the same credentials to connect to your local database.
+And that's it, that's all you need to know about how this project is composed.
 
 ## Instalation and configuration
-Para la instalacion es muy sencillo y el profeso de configuracion para que puedas correr el proyecto en este caso mi workshop2 es demasiado facil ya que es un proceso autimatizado. 
-Lo primero que debes hacer es instalar todos los requierments dentro del proyecto, todas las librerias que ves ahi debes instalarlas, entonces como haces esto, sencillo, abres una terminal con la direccion del proyecot y escribes lo siguiente:
+The installation is very simple and the configuration process so you can run the project, in this case my workshop2, is too easy since it is an automated process.
+The first thing you must do is install all the requirements within the project, all the libraries that you see there you must install, so how do you do this, simple, you open a terminal with the address of the project and write the following:
 ```
 pip install -r requirements.txt
 
 ```
-Listo ya teneindo todas las dependencias y tambien las librerias que se van a usar solamente debes crear los credentials que te mostre en la anterior sección.
+Ready, having all the dependencies and also the libraries that are going to be used, you only have to create the credentials that I showed you in the previous section.
 
-Ahora viene otra parte de instalación en este caso el programa docker si es que no lo tienes instalado, lo puedes instalar mediante el siguinete link: https://www.docker.com/products/docker-desktop/
+Now comes another installation part, in this case the docker program, if you do not have it installed, you can install it through the following link: https://www.docker.com/products/docker-desktop/ 
 
-Tambien debes tener instalado el gestor postgress y haber configurado su instalacion, si aun no lo tienes puedes instalarlo en el siguiente link:  https://www.postgresql.org/download/ 
-Habiendo configurado este gestor debes crear la base de datos workshop2 y dentro de ella la tabla grammys, para poder insertar los datos a esta tabla y luego traerlos. Este proceso lo haces en uno de los notebooks en la carpeta Notebooks.
-Ahora, despues de que ya has abierto docker, procedemos a correr el docker compouse, dentro de la carpeta airflow_first_dag esta otro readme con la informacion detallada de lo que debes hacer.
+You must also have the postgress manager installed and have configured its installation. If you do not have it yet, you can install it at the following link: https://www.postgresql.org/download/ 
+Having configured this manager you must create the workshop2 database and within it the grammys table, to be able to insert the data into this table and then bring it. You do this process in one of the notebooks in the Notebooks folder.
+Now, after you have opened docker, we proceed to run docker compouse, inside the airflow_first_dag folder is another readme with detailed information on what you should do.
 
-Si quieres realizar y ver los edas que se le realizaron a cada uno de los datasets, pues dirigete a la carpeta notebooks que cada uno de estos son jupyter Notebooks, una manera de correr codigo por celdas, y procede a correr cada celda en orden.
+If you want to make and see the edits that were made to each of the datasets, then go to the notebooks folder, each of these are Jupyter Notebooks, a way to run code by cells, and proceed to run each cell in order.
 
-Ya que tienes todas estas partes hechas es hora de correr el dag, si ya ingresaste a localhost:8080 debes ver que te aparecen muchos das y que el primero se llama "dag_workshop" inicialo. Despues de esto ingresa a este dag para que puedas ver los graficos.
-Despues de esto lo que debes hacer es correr el dag, ¿Como lo haces? arriba a la izquierda no tan arriba esta un boton de play, dale click ahi y mira como la automatizacion de airflow corre el proyecto.
+Now that you have all these parts done, it is time to run the dag. If you have already entered localhost:8080, you should see that many days appear and that the first one is called "dag_workshop". After this, enter this dag so you can see the graphs.
+After this what you should do is run the dag, how do you do it? At the top left, not so high up, is a play button, click there and see how the airflow automation runs the project.
 
 ## Dashboard
 
-Para ver el dashboar debes ingresar aqui : **[Dashboard](https://github.com/JuancaBurbano/workshop2/blob/main/airflow_first_dag/plugins/workshop2.pdf)**.
+To see the dashboar you must enter here: **([workshop2.pdf](https://github.com/JuancaBurbano/workshop2/files/15057543/workshop2.pdf))**.
 
 ## Reporte
-Para poder ver el reporte que he creado sobre este proyecto puedes verlo en el siguiente link: https://docs.google.com/document/d/1NBlA778qiSLdZA64eNcdaWKpzHigMIywle_AJxlxTkw/edit?usp=sharing 
+To see the report that I have created about this project you can see it in the following link: https://docs.google.com/document/d/1NBlA778qiSLdZA64eNcdaWKpzHigMIywle_AJxlxTkw/edit?usp=sharing 
 ## Contacto
-Mi correo es el siguinete por si deseas hacerme una consulta: camilitoburher17@gmail.com
+
+auto_awesome
+Se muestra la traducción de Mi correo es el siguiente por si deseas hacerme una consulta:
+Traducir Mi correo es el siguinete por si deseas hacerme una consulta:
+61 / 5.000
+Resultados de traducción
+Resultado de traducción
+My email is the following in case you want to ask me a question: camilitoburher17@gmail.com
