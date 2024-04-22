@@ -1,0 +1,13 @@
+mysql
+matplotlib
+numpy
+pandas
+pip
+sqlalchemy
+sqlalchemy-utils
+mysqlclient
+seaborn
+mysql.connector
+matplotlib.pyplot
+seaborn
+random
